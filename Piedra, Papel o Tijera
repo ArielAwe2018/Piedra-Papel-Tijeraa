@@ -36,3 +36,7 @@ tk.Button(ventana_inicio, text="Jugar", font=("Arial", 12), command=iniciar_jueg
 tk.Button(ventana_inicio, text="Salir", font=("Arial", 12), command=ventana_inicio.quit, width=15, bg="#333333", fg="white").pack()
 
 ventana_inicio.mainloop()
+
+
+Diagrama de Flujo 
+https://www.canva.com/design/DAGeSjAtiN0/BSKZynRdOpGYExrCAR78fg/edit?utm_content=DAGeSjAtiN0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
