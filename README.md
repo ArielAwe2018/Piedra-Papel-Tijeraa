@@ -1,4 +1,4 @@
-Piedra, Papel o Tijera - Juego
+Piedra, Papel , Tijeraa - Juego
 Descripción
 Piedra, Papel o Tijera es un juego clásico jugado entre un jugador humano y la computadora. El jugador selecciona una de las tres opciones disponibles: Piedra, Papel o Tijera, y la computadora hace su elección de forma aleatoria. El objetivo del juego es vencer a la computadora con la siguiente lógica de reglas:
 
@@ -31,18 +31,17 @@ Para ejecutar este juego en tu propia máquina, sigue estos pasos:
 
 Si prefieres clonar el repositorio, usa este comando en tu terminal:
 
-- bash
-   git clone https://github.com/tu-usuario/Piedra-Papel-O-Tijera.git
+
+   - git clone https://github.com/tu-usuario/Piedra-Papel-Tijeraa.git
   
 Navega a la carpeta del proyecto y ejecuta el archivo principal:
 
-- bash
-  python main.py
+
+  - python main.py
 
  Estructura del Repositorio
--bash
 
- Piedra-Papel-O-Tijera/
+ - Piedra-Papel-Tijeraa/
 │
 ├── main.py               # Archivo principal con el código del juego.
 ├── README.md             # Este archivo con la descripción del proyecto.
@@ -55,5 +54,5 @@ Este proyecto es de código abierto y puede ser utilizado y modificado librement
 Consejos:
 Si no tienes Tkinter instalado (es raro, porque suele venir con Python), puedes instalarlo ejecutando:
 
-- bash
-   pip install tk
+
+   - pip install tk
