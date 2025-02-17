@@ -1,24 +1,99 @@
 import tkinter as tk
+from tkinter import messagebox
+import random
+
+def jugar(opcion_usuario):
+    """
+    Ejecuta una ronda del juego Piedra, Papel o Tijera.
+    
+    Parámetros:
+        opcion_usuario (str): La elección del jugador ("piedra", "papel" o "tijera").
+    
+    Retorno:
+        None
+    """
+    opciones = ["piedra", "papel", "tijera"]
+    opcion_pc = random.choice(opciones)
+    resultado = determinar_ganador(opcion_usuario, opcion_pc)
+    messagebox.showinfo("Resultado", f"Tú elegiste: {opcion_usuario}\nLa computadora eligió: {opcion_pc}\n{resultado}")
+
+def determinar_ganador(jugador, pc):
+    """
+    Determina el ganador de la ronda comparando las elecciones del jugador y la computadora.
+    
+    Parámetros:
+        jugador (str): La elección del jugador ("piedra", "papel" o "tijera").
+        pc (str): La elección de la computadora ("piedra", "papel" o "tijera").
+    
+    Retorno:
+        str: El resultado de la ronda ("¡Es un empate!", "¡Ganaste!" o "¡Perdiste!").
+    """
+    if jugador == pc:
+        return "¡Es un empate!"
+    elif (jugador == "piedra" and pc == "tijera") or (jugador == "papel" and pc == "piedra") or (jugador == "tijera" and pc == "papel"):
+        return "¡Ganaste!"
+    else:
+        return "¡Perdiste!"
+
+def mostrar_reglas():
+    """
+    Muestra la ventana con las reglas del juego y un botón de continuar.
+    
+    Retorno:
+        None
+    """
+    ventana_reglas = tk.Tk()
+    ventana_reglas.title("Reglas del juego")
+    ventana_reglas.geometry("400x350")
+    ventana_reglas.configure(bg="#000000")
+    
+    # Mostrar las reglas
+    reglas = """Reglas del juego:
+1. Piedra vence a Tijera.
+2. Tijera vence a Papel.
+3. Papel vence a Piedra.
+4. Si ambos eligen la misma opción, es un empate."""
+    
+    label_reglas = tk.Label(ventana_reglas, text=reglas, font=("Arial", 12), bg="#000000", fg="white", justify="left")
+    label_reglas.pack(pady=20)
+    
+    # Botón para continuar
+    def continuar_juego():
+        ventana_reglas.destroy()  # Cierra la ventana de reglas
+        iniciar_juego()  # Inicia el juego
+    
+    tk.Button(ventana_reglas, text="Continuar", font=("Arial", 12), command=continuar_juego, width=15, bg="#333333", fg="white").pack(pady=20)
+    
+    # Mostrar el "By Ariel"
+    label_by_ariel = tk.Label(ventana_reglas, text="By Ariel", font=("Arial", 10), bg="#000000", fg="white")
+    label_by_ariel.pack(pady=10)
+    
+    ventana_reglas.mainloop()
 
 def iniciar_juego():
+    """
+    Inicia la ventana principal del juego donde el jugador puede elegir piedra, papel o tijera.
+    
+    Retorno:
+        None
+    """
     ventana_inicio.destroy()
     ventana_juego = tk.Tk()
     ventana_juego.title("Piedra, Papel o Tijera")
     ventana_juego.geometry("400x300")
-    ventana_juego.configure(bg="black")  # Color de fondo cambiado a negro
+    ventana_juego.configure(bg="#000000")
     
-    label = tk.Label(ventana_juego, text="Elige una opción:", font=("Arial", 14), bg="black", fg="white")
+    label = tk.Label(ventana_juego, text="Elige una opción:", font=("Arial", 14), bg="#000000", fg="white")
     label.pack(pady=10)
     
-    botones_frame = tk.Frame(ventana_juego, bg="black")
+    botones_frame = tk.Frame(ventana_juego, bg="#000000")
     botones_frame.pack()
     
-    tk.Button(botones_frame, text="Piedra", font=("Arial", 12), width=10, bg="#333333", fg="white").grid(row=0, column=0, padx=5, pady=5)
-    tk.Button(botones_frame, text="Papel", font=("Arial", 12), width=10, bg="#333333", fg="white").grid(row=0, column=1, padx=5, pady=5)
-    tk.Button(botones_frame, text="Tijera", font=("Arial", 12), width=10, bg="#333333", fg="white").grid(row=0, column=2, padx=5, pady=5)
-    
-    label_credito = tk.Label(ventana_juego, text="by Ariel", font=("Arial", 10), bg="black", fg="white")
-    label_credito.pack(side="bottom", pady=10)
+    opciones = ["Piedra", "Papel", "Tijera"]
+    for i, opcion in enumerate(opciones):
+        tk.Button(botones_frame, text=opcion, font=("Arial", 12), 
+                  command=lambda opcion=opcion.lower(): jugar(opcion), 
+                  width=10, bg="#333333", fg="white").grid(row=0, column=i, padx=5, pady=5)
     
     ventana_juego.mainloop()
 
@@ -26,17 +101,13 @@ def iniciar_juego():
 ventana_inicio = tk.Tk()
 ventana_inicio.title("Bienvenido")
 ventana_inicio.geometry("400x300")
-ventana_inicio.configure(bg="black")
+ventana_inicio.configure(bg="#000000")
 
-label_bienvenida = tk.Label(ventana_inicio, text="¡Bienvenido al juego Piedra, Papel o Tijera!", font=("Arial", 14), bg="black", fg="white")
+label_bienvenida = tk.Label(ventana_inicio, text="¡Bienvenido al juego Piedra, Papel o Tijera!", font=("Arial", 14), bg="#000000", fg="white")
 label_bienvenida.pack(pady=20)
 
-tk.Button(ventana_inicio, text="Jugar", font=("Arial", 12), command=iniciar_juego, width=15, bg="#333333", fg="white").pack(pady=20)
-
+tk.Button(ventana_inicio, text="Jugar", font=("Arial", 12), command=mostrar_reglas, width=15, bg="#333333", fg="white").pack(pady=20)
 tk.Button(ventana_inicio, text="Salir", font=("Arial", 12), command=ventana_inicio.quit, width=15, bg="#333333", fg="white").pack()
 
 ventana_inicio.mainloop()
 
-
-Diagrama de Flujo 
-https://www.canva.com/design/DAGeSjAtiN0/BSKZynRdOpGYExrCAR78fg/edit?utm_content=DAGeSjAtiN0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
